@@ -3,12 +3,12 @@ Shows how luigi can be used with kubernetes
 
 ## ToDo:
 1. Setup 
-    1. Kubernetes
-    2. Virtualenvironment mit allen Packages
-    3. Luigi
-    4. Dataset
+    1. Kubernetes (Dominik)
+    2. Virtualenvironment mit allen Packages (Domikin)
+    3. Luigi (Eva)
+    4. Dataset (Anna)
 
-2. Luigi Basics:
+2. Luigi Basics: (Eva)
     1. Basic Concepts
     2. Basic Example (What is Luigi and how does it work)
   
@@ -18,7 +18,7 @@ Shows how luigi can be used with kubernetes
     3. How to get data to the tasks (pods)
     4. Scaling
 
-4. Use Cases
+4. Use Cases (Anna - Definition und kurze Beschreibung; ohne Implementierung)
     1. Batch-Processing Pipeline - Implementation (+ Image of a pipeline)
     2. Stream-Processing Pipeline - Implementation (+ Image of a pipeline)
 
