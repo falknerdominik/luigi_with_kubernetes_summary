@@ -1,3 +1,4 @@
+<pre>
 Use Case 1:
 Preprocessing a Dataset
   Meine Idee wäre die Daten vom DAQ Projekt zu verwenden. 
@@ -18,5 +19,5 @@ ML mit Luigi
         Mögliche Fragestellung:
         -) Zusammenhang Schwere des Unfalls und Uhrzeit?
   Wir können auch natürlich wieder den DAQ Datensatz verwenden (oder einen anderen aus dem Studium)
-          
-  
+</pre>     
+
