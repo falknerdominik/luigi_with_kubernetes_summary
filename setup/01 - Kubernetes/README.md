@@ -14,7 +14,9 @@ A local cluster can be done via the `minicube` application. It is a cheap and ea
 
 To install `minicube` follow the up-to-date instructions (available for linux / macOS / windows) provided [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
 
+TODO: Write down what parameters (url port) we need from this and where we get them
 ## Cloud Setup
 
 Instructions for the cloud setup can be found [here](https://github.com/clc3-CloudComputing/clc3-ws19/tree/master/3%20Kubernetes/exercise%203.1).
+TODO: Write down what parameters (url port) we need from this and where we get them (screenshot)
 
