@@ -3,8 +3,8 @@ Shows how luigi can be used with kubernetes
 
 ## ToDo:
 1. Setup 
-    1. Kubernetes (Dominik)
-    2. Virtualenvironment mit allen Packages (Domikin)
+    1. [Kubernetes](https://github.com/falknerdominik/luigi_with_kubernetes_summary/blob/master/setup/01%20-%20Kubernetes/README.md)
+    2. [Virtual environment and dependencies](https://github.com/falknerdominik/luigi_with_kubernetes_summary/blob/master/setup/02%20-%20virtual%20environments/README.md)
     3. Luigi (Eva)
     4. Dataset (Anna)
 
