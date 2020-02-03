@@ -12,7 +12,15 @@ A local cluster can be done via the `minicube` application. It is a cheap and ea
 
 >Be aware that your operating system and hardware need to support virtualization. 
 
-To install `minicube` follow the up-to-date instructions (available for linux / macOS / windows) provided [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
+To install `minicube` follow the up-to-date instructions (available for linux / macOS / windows) provided [here](https://kubernetes.io/docs/tasks/tools/install-minikube/). Specific instructions for Archlinux can be obtained [here](http://blog.programmableproduction.com/2018/03/08/Archlinux-Setup-Minikube-using-KVM/).
+
+To verify that the application started start the dashboard like this:
+ 
+```bash 
+$ minikube dashboard
+``` 
+
+If the browser window does not open, you can access the URL via `minikube dashboard --url`.
 
 TODO: Write down what parameters (url port) we need from this and where we get them
 ## Cloud Setup
