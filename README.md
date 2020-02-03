@@ -2,6 +2,23 @@
 Shows how luigi can be used with kubernetes
 
 ## ToDo:
+0. Current Tasks
+   1. Add kubernetes parameter to setup (Dominik)
+   2. Welche Parameter benötigt Luigi von Kubernetes? (Dominik)
+   3. Use Case und Dataset beschreiben? (Anna)
+   4. Kubernetes zum Laufen bringen (Mini-Cube Example) (Anna, Eva)
+   5. Edge detection Beispiel in Luigi Tasks bringen: Task 1 (Anna)
+   6. Edge detection Beispiel in Luigi Tasks bringen: Task 2 (Eva)
+   7. Kubernetes und Luigi verbinden (Dominik)
+       1. Wie?
+       2. Kubernetes und Luigi verbinden – Umsetzung
+       3. Vorteile (wenn über mehrere Nodes)  dann Luigi-Worker in versch. Nodes
+       4. Kubernetes: Abläufe der Tasks - Visualisierung
+   8. Pipeline - Grafik (Eva)
+   9. Abschlusspräsentation (All)
+   10. Readme: (All)
+       1. Prior knowledge
+
 1. Setup 
     1. [Kubernetes](https://github.com/falknerdominik/luigi_with_kubernetes_summary/blob/master/setup/01%20-%20Kubernetes/README.md)
     2. [Virtual environment and dependencies](https://github.com/falknerdominik/luigi_with_kubernetes_summary/blob/master/setup/02%20-%20virtual%20environments/README.md)
