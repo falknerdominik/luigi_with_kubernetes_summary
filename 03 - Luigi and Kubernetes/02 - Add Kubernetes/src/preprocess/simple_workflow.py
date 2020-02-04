@@ -1,4 +1,5 @@
 """Preprocessing example to show how luigi works (only one preprocessing step will be executed!)."""
+import sys
 from typing import Generator
 
 import luigi
@@ -6,7 +7,7 @@ import pandas as DataFrame
 import pandas as pd
 from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
 
-from preprocess import drop_nan_columns
+from .preprocessing import drop_nan_columns
 
 
 class Preprocess(luigi.Task):
@@ -18,6 +19,8 @@ class Preprocess(luigi.Task):
     filename: str = luigi.Parameter()
     container_name: str = luigi.Parameter()
 
+    # Run method is not necessary anymore - kubernetes will run the command (specified in the cmd property)
+    # and implements its own run method
     def run(self):
         # read data from url
         data_in: DataFrame = pd.read_csv(self.gist_input_url, sep=";")
@@ -34,7 +37,8 @@ class Preprocess(luigi.Task):
             container=self.container_name,
             blob=self.filename,
             client=AzureBlobClient(
-                connection_string=self.connection_string)
+                connection_string=self.connection_string
+            )
         )
 
 
@@ -45,11 +49,13 @@ class PreprocessAllFiles(luigi.WrapperTask):
     # gist where the CSV files are stored
     gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
     # connection string obtained for the storage unit via azure
-    azure_connection_string = '<Insert-Connection-String>'
-    container_name = '<Insert-Container-Name>'
+    # azure_connection_string = '<Insert-Connection-String>'
+    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
+    # container_name = '<Insert-Container-Name>'
+    container_name = 'clcstoragecontainer'
 
     def requires(self) -> Generator[luigi.Task, None, None]:
-        for filename in ['test_file1.CSV', 'test_file2.CSV']:
+        for filename in [sys.argv[1]]:
             yield Preprocess(
                 gist_input_url=f'{self.gist_url}{filename}',
                 filename=filename,
@@ -58,5 +64,5 @@ class PreprocessAllFiles(luigi.WrapperTask):
             )
 
 
-if __name__ == "__main__":
+def run_pipeline():
     luigi.build([PreprocessAllFiles()], local_scheduler=True)
