@@ -1,0 +1,68 @@
+"""Preprocessing example to show how luigi works (only one preprocessing step will be executed!)."""
+import sys
+from typing import Generator
+
+import luigi
+import pandas as DataFrame
+import pandas as pd
+from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
+
+from .preprocessing import drop_nan_columns
+
+
+class Preprocess(luigi.Task):
+    """
+    Applies general preprocessing steps to all CSV files loaded.
+    """
+    gist_input_url: str = luigi.Parameter()
+    connection_string: str = luigi.Parameter()
+    filename: str = luigi.Parameter()
+    container_name: str = luigi.Parameter()
+
+    # Run method is not necessary anymore - kubernetes will run the command (specified in the cmd property)
+    # and implements its own run method
+    def run(self):
+        # read data from url
+        data_in: DataFrame = pd.read_csv(self.gist_input_url, sep=";")
+        data_preprocessed = drop_nan_columns(data_in)
+
+        # write contents to azure blob file
+        with self.output().open("w") as output_file:
+            data_preprocessed.to_csv(output_file)
+
+    def output(self) -> luigi.Target:
+        # save the output in the azure blob storage
+        # noinspection PyTypeChecker
+        return AzureBlobTarget(
+            container=self.container_name,
+            blob=self.filename,
+            client=AzureBlobClient(
+                connection_string=self.connection_string
+            )
+        )
+
+
+class PreprocessAllFiles(luigi.WrapperTask):
+    """
+    Applies defined preprocessing steps to all files in the selected folder.
+    """
+    # gist where the CSV files are stored
+    gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
+    # connection string obtained for the storage unit via azure
+    # azure_connection_string = '<Insert-Connection-String>'
+    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
+    # container_name = '<Insert-Container-Name>'
+    container_name = 'clcstoragecontainer'
+
+    def requires(self) -> Generator[luigi.Task, None, None]:
+        for filename in [sys.argv[1]]:
+            yield Preprocess(
+                gist_input_url=f'{self.gist_url}{filename}',
+                filename=filename,
+                connection_string=self.azure_connection_string,
+                container_name=self.container_name,
+            )
+
+
+def run_pipeline():
+    luigi.build([PreprocessAllFiles()], local_scheduler=True)
