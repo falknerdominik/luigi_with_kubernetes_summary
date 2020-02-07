@@ -220,3 +220,5 @@ dmypy.json
 
 # End of https://www.gitignore.io/api/python,libreoffice,pycharm+all,microsoftoffice
 luigi_basics/Luigi/data/processed/
+
+luigi_kubernetes/data/urban_sound_files/
