@@ -4,15 +4,11 @@ import os
 from typing import Generator
 
 import luigi
-import pandas as DataFrame
-import pandas as pd
 from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
-from luigi.format import TextWrapper
 import numpy as np
 from luigi.local_target import LocalFileSystem
 
-from model import UrbanModels, ModelUtils
-from plot import Plots
+from src.trainModel.model import UrbanModels, ModelUtils
 from azure.storage.blob import BlockBlobService
 
 """
