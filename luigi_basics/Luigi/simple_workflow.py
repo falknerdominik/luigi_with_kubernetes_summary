@@ -7,7 +7,7 @@ import pandas as DataFrame
 import pandas as pd
 from luigi.format import TextWrapper
 
-from preprocessing import drop_nan_columns, drop_duplicates
+from luigi_basics.Luigi.preprocessing import drop_nan_columns, drop_duplicates
 
 
 class LoadCSV(luigi.ExternalTask):
