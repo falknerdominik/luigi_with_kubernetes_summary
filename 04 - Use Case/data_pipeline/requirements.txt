@@ -9,10 +9,11 @@ chardet==3.0.4
 cryptography==2.8
 docutils==0.16
 httplib2==0.17.0
-grpcio==1.26.0
-h5py==2.10.0
+
+
 idna==2.8
 joblib==0.14.1
+librosa==0.7.1
 lockfile==0.12.2
 luigi==2.8.11
 Keras==2.2.4
@@ -37,6 +38,8 @@ rsa==4.0
 scikit-learn==0.22.1
 scipy==1.4.1
 six==1.14.0
+sklearn
+SoundFile==0.10.3post1
 tornado==5.1.1
 tzlocal==2.0.0
 urllib3==1.25.8
