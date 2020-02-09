@@ -1,4 +1,3 @@
-"""Preprocessing example to show how luigi works (only one preprocessing step will be executed!)."""
 import os
 from typing import Generator
 import luigi
@@ -72,9 +71,7 @@ class RunTrainModel(luigi.WrapperTask):
     output_path: str = os.path.join(os.path.abspath(os.path.curdir), "clc", "test1")
 
     # connection string obtained for the storage unit via azure
-    # azure_connection_string = '<Insert-Connection-String>'
     azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
-    # container_name = '<Insert-Container-Name>'
     container_name = 'clcstoragecontainer'
 
     def requires(self) -> Generator[luigi.Task, None, None]:

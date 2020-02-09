@@ -1,4 +1,4 @@
-"""Preprocessing example to show how luigi works (only one preprocessing step will be executed!)."""
+"""Kubernetes."""
 from typing import Generator
 
 import luigi
@@ -10,7 +10,6 @@ class Preprocess(KubernetesJobTask):
     """
     Applies general preprocessing steps to all CSV files loaded.
     """
-    # gist_input_url: str = luigi.Parameter()
     connection_string: str = luigi.Parameter()
     filename: str = luigi.Parameter()
     container_name: str = luigi.Parameter()
@@ -50,12 +49,10 @@ class Preprocess(KubernetesJobTask):
 
 class PreprocessAllFiles(luigi.WrapperTask):
     """
-    Applies defined preprocessing steps to all files in the selected folder.
+    Applies defined processing steps to all files in the selected folder.
     """
     # connection string obtained for the storage unit via azure
-    # azure_connection_string = '<Insert-Connection-String>'
     azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
-    # container_name = '<Insert-Container-Name>'
     container_name = 'clcstoragecontainer'
 
     def requires(self) -> Generator[luigi.Task, None, None]:
