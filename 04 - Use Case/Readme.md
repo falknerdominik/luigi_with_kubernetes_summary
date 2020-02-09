@@ -14,3 +14,22 @@ At the 22nd ACM International Conference on Multimedia, Nov. 2014 in Orlando USA
 ###### References:
 
 1. *J. Salamon, C. Jacoby and J. P. Bello, "**A Dataset and Taxonomy for Urban Sound Research**", 22nd ACM International Conference on Multimedia, Orlando USA, Nov. 2014.*
+
+**Execute the Maschine Learing Pipeline**
+
+You will need to exchange the Azure Connection String and Containernme in the luigi_tasks.py and the luigi_tasks_kubernetes.py. 
+
+**Execute Pipeline in Docker**
+
+You need to exchange the ``run_pipeline()`` in the ``__main__.py`` file with ``run_pipeline_wo()``. This calls the pipline without Kubernetes.
+
+Before you can execute the docker build command make sure you have downloaded the urban sound files from the challange and placed them in the directory called urban_sound_files at the same level as the Dockerfile.
+
+Than you need to execute ``docker build -t clc-example:v1 .`` in the data_pipeline directory. This will build a docker container from the DockerImage.
+
+With ``docker run clc-example:v1 python -m clc.preprocessing`` you can run the pipeline in an Docker container. Afterwards you can find the trained Model in your Azure Storage.
+
+**Execute Pipeline with Kubernetes and Docker**
+
+
+    
