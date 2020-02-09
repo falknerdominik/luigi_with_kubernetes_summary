@@ -8,8 +8,10 @@ from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
 import numpy as np
 from luigi.local_target import LocalFileSystem
 
-from src.trainModel.model import UrbanModels, ModelUtils
+#from .trainModel.model import UrbanModels, ModelUtils
 from azure.storage.blob import BlockBlobService
+
+from .model import UrbanModels, ModelUtils
 
 """
 
@@ -160,11 +162,13 @@ class TrainModel(luigi.Task):
         # Train model
         model, history = ModelUtils.train_mpl(model, x_train, x_test, y_train, y_test, model_file)
 
+        fs = LocalFileSystem()
+        fs.mkdir(self.output_path)
         model.save(os.path.join(self.output_path, "trained_mlp.h5"))
 
         # Speichern das Modes lokal mit einem Eigenen Target NonAtomicKerasTarget
         # self.output()['output1'].save(model)
-        with self.output().open('wb') as fout:
+        with self.output().open('w') as fout:
             f = open(os.path.join(self.output_path, "trained_mlp.h5"), "rb")
             fr = f.read()
             fout.write(fr)
@@ -185,8 +189,9 @@ class TrainModel(luigi.Task):
             container='clcstoragecontainer',
             blob="trained_mlp.h5",
             client=AzureBlobClient(
-                connection_string='DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
+                connection_string='DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
             )
+            , format=luigi.format.Nop
         )
         # Speichern das Modul im Azure Blob Storage mit einem eigenen Target
         #               --> funktioniert irgendwie nicht (ohne Luigi funktioniert der selbe Code aber ...
@@ -208,8 +213,8 @@ class PreprocessAllFiles(luigi.WrapperTask):
     Applies defined preprocessing steps to all files in the selected folder.
     """
 
-    input_path: str = os.path.join("test")
-    output_path: str = os.path.join("test1")
+    input_path: str = os.path.join(os.path.abspath(os.path.curdir),"clc", "test")
+    output_path: str = os.path.join(os.path.abspath(os.path.curdir),"clc", "test1")
 
     # connection string obtained for the storage unit via azure
     # azure_connection_string = '<Insert-Connection-String>'
@@ -229,6 +234,9 @@ class PreprocessAllFiles(luigi.WrapperTask):
         """
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     # luigi.build([PreprocessAllFiles()], local_scheduler=True)
-    luigi.build([TrainModel(os.path.join("test"), os.path.join("test1"))], local_scheduler=True)
+#    luigi.build([TrainModel(os.path.join("test"), os.path.join("test1"))], local_scheduler=True)
+
+def run_pipeline_wo():
+    luigi.build([PreprocessAllFiles()], local_scheduler=True)

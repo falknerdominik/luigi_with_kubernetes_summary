@@ -2,13 +2,13 @@ from __future__ import print_function
 
 import keras
 from keras import Sequential
-from keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.engine.saving import load_model
-from keras.layers import Activation, GlobalAveragePooling2D, Conv1D, MaxPooling1D, Dense, Dropout
+from tensorflow.keras.layers import Activation, GlobalAveragePooling2D, Conv1D, MaxPooling1D, Dense, Dropout
 from keras.layers import Conv2D, MaxPooling2D
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import LSTM
-from keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.models import Sequential
 import numpy as np
 
 
@@ -16,7 +16,7 @@ class ModelUtils:
     """
     In this class some important model utils are included.
     """
-    
+
     def fit_and_evaluate(x_train, x_val, y_train, y_val, EPOCHS=20, BATCH_SIZE=128):
         """
         Function to fit the model.
@@ -35,14 +35,14 @@ class ModelUtils:
         early_stopping = EarlyStopping(monitor="val_loss", patience=patience, verbose=1)
         # save model as physical file
         model_checkpoint = ModelCheckpoint("fas_mnist_1.h5", verbose=1, save_best_only=True)
-        
+
         model = UrbanModels.cnn(x_train, y_train)
         result = model.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,
                             callbacks=[early_stopping, model_checkpoint],
                             verbose=1, validation_split=0.1)
 
         print("Validation Score: ", model.evaluate(x_val, y_val))
-        
+
         return result
 
     def train_mpl(model, x_train, x_test, y_train_val, y_test_val, model_file):
@@ -91,7 +91,7 @@ class ModelUtils:
 
         return score[0], score[1] * 100, loaded_model
 
-    
+
 class UrbanModels:
     """
     This class includes different models used to classify different urban sounds. Thereby, the following neuronal
@@ -149,7 +149,7 @@ class UrbanModels:
         model.add(Activation('softmax'))
 
         model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
-        
+
         return model
 
     # !!!!

@@ -56,7 +56,7 @@ class PreprocessAllFiles(luigi.WrapperTask):
     gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
     # connection string obtained for the storage unit via azure
     # azure_connection_string = '<Insert-Connection-String>'
-    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
+    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
     # container_name = '<Insert-Container-Name>'
     container_name = 'clcstoragecontainer'
 
@@ -65,6 +65,7 @@ class PreprocessAllFiles(luigi.WrapperTask):
         yield Preprocess(
             connection_string=self.azure_connection_string,
             container_name=self.container_name,
+            filename="testblub"
         )
 
 
