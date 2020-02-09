@@ -10,8 +10,10 @@ from pandas import DataFrame
 from sklearn.preprocessing import LabelEncoder
 
 
+# def get_feature_label(row, directory):
 def get_feature_label(row, directory):
-    file_name = os.path.join("data_pipeline", "urban_sound_files", str(row.ID) + '.wav')
+    file_name =  os.path.join(directory, str(row.ID) + '.wav')
+    # file_name = os.path.join("data_pipeline", "urban_sound_files", str(row.ID) + '.wav')
     # handle exception to check if there isn't a file which is corrupted
     try:
         # here kaiser_fast is a technique used for faster extraction

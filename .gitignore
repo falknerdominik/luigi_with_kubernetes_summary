@@ -222,3 +222,5 @@ dmypy.json
 luigi_basics/Luigi/data/processed/
 
 luigi_kubernetes/data/urban_sound_files/
+03 - Luigi and Kubernetes/01 - Move data into the cloud/data_pipeline
+04 - Use Case/data_pipeline/urban_sound_files

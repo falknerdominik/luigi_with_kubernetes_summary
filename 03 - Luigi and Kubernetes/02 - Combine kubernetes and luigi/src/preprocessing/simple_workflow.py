@@ -55,7 +55,7 @@ class PreprocessAllFiles(luigi.WrapperTask):
     container_name = 'clcstoragecontainer'
 
     def requires(self) -> Generator[luigi.Task, None, None]:
-        for filename in [sys.argv[1]]:
+        for filename in [sys.argv[1:]]:
             yield Preprocess(
                 gist_input_url=f'{self.gist_url}{filename}',
                 filename=filename,
