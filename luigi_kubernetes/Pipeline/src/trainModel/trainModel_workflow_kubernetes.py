@@ -6,11 +6,10 @@ from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
 from luigi.contrib.kubernetes import KubernetesJobTask
 
 
-class Preprocess(KubernetesJobTask):
+class Train(KubernetesJobTask):
     """
-    Applies general preprocessing steps to all CSV files loaded.
+    Trains model
     """
-    # gist_input_url: str = luigi.Parameter()
     connection_string: str = luigi.Parameter()
     filename: str = luigi.Parameter()
     container_name: str = luigi.Parameter()
@@ -52,8 +51,6 @@ class PreprocessAllFiles(luigi.WrapperTask):
     """
     Applies defined preprocessing steps to all files in the selected folder.
     """
-    # gist where the CSV files are stored
-    gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
     # connection string obtained for the storage unit via azure
     # azure_connection_string = '<Insert-Connection-String>'
     azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
@@ -62,10 +59,10 @@ class PreprocessAllFiles(luigi.WrapperTask):
 
     def requires(self) -> Generator[luigi.Task, None, None]:
         # for filename in ['test_file1.CSV', 'test_file2.CSV']:
-        yield Preprocess(
+        yield Train(
             connection_string=self.azure_connection_string,
             container_name=self.container_name,
-            filename="testblub"
+            filename="trainModel.out"
         )
 
 

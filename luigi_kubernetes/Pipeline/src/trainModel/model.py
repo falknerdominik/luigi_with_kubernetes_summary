@@ -45,7 +45,7 @@ class ModelUtils:
 
         return result
 
-    def train_mpl(model, x_train, x_test, y_train_val, y_test_val, model_file):
+    def train_mpl(model, x_train, x_test, y_train_val, y_test_val):
         """
         Compile, train and save model.
 
