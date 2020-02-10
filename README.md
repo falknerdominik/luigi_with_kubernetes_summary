@@ -3,7 +3,7 @@ Shows how luigi can be used with kubernetes
 
 1. Setup 
     1. Kubernetes
-    2. Virtual environment and dependencies
+    2. Virtual Environment and Dependencies
 
 2. Luigi Basics
     1. Basic Concepts
@@ -14,4 +14,4 @@ Shows how luigi can be used with kubernetes
     2. Let Luigi build the job specification
 
 4. Use Cases
-    1. Batch-Processing Pipeline - Implementation (+ Image of a pipeline)
+    1. Batch-Processing Pipeline - Implementation
