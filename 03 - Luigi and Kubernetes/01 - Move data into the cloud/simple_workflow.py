@@ -45,14 +45,8 @@ class PreprocessAllFiles(luigi.WrapperTask):
     # gist where the CSV files are stored
     gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
     # connection string obtained for the storage unit via azure
-    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
-    container_name = 'clcstoragecontainer'
-    """
-    account_name = 'storageaccountclcluigi',
-        account_key = 'NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q=='
-        container_name = 'clcstoragecontainer'
-        connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
-    """
+    azure_connection_string = '<Insert-Connection-String>'
+    container_name = '<Insert-Container-Name>'
 
     def requires(self) -> Generator[luigi.Task, None, None]:
         for filename in ['test_file1.CSV', 'test_file2.CSV']:
