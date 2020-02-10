@@ -8,10 +8,10 @@ import pandas as DataFrame
 import pandas as pd
 from luigi.contrib.azureblob import AzureBlobTarget, AzureBlobClient
 from luigi.local_target import LocalFileSystem
+from sklearn.model_selection import train_test_split
 
 from .model import UrbanModels, ModelUtils
 from .utils import get_features_and_labels
-from sklearn.model_selection import train_test_split
 
 
 class GetFeaturesLabels(luigi.Task):
@@ -152,8 +152,8 @@ class RunAllModels(luigi.WrapperTask):
         # gist where the CSV files are stored
         gist_url = 'https://gist.githubusercontent.com/falknerdominik/425d72f02bd58cb5d42c3ddc328f505f/raw/4ad926e347d01f45496ded5292af9a5a5d67c850/'
         # connection string obtained for the storage unit via azure
-        azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclcluigi;AccountKey=NK/tDtLASVTM/lJ0BgsPNSf2r6pXoJYFf9obiipXfWOtPxzz0NAwANmbKNiX9PXol2nyijvZGPJiz0fvzQl06Q==;EndpointSuffix=core.windows.net'
-        container_name = 'clcstoragecontainer'
+        azure_connection_string = '<Insert-Connection-String>'
+        container_name = '<Insert-Container-Name>'
 
         for filename in ['train_short.csv', 'test.csv']:
             if filename.__contains__("test"):

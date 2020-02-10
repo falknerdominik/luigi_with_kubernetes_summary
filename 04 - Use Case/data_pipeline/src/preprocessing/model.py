@@ -1,15 +1,11 @@
 from __future__ import print_function
 
-import keras
 from keras import Sequential
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.engine.saving import load_model
-from tensorflow.keras.layers import Activation, GlobalAveragePooling2D, Conv1D, MaxPooling1D, Dense, Dropout
-from keras.layers import Conv2D, MaxPooling2D
-from tensorflow.keras.layers import Dense, Dropout, Flatten
-from tensorflow.keras.layers import LSTM
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.models import Sequential
-import numpy as np
 
 
 class ModelUtils:
