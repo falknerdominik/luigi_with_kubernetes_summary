@@ -52,8 +52,8 @@ class PreprocessAllFiles(luigi.WrapperTask):
     Applies defined processing steps to all files in the selected folder.
     """
     # connection string obtained for the storage unit via azure
-    azure_connection_string = 'DefaultEndpointsProtocol=https;AccountName=storageaccountclc;AccountKey=soGFPvXy+lmdLUvj3v0qK7q0rtHe5kdNBL4w2cQd6qqhQ7py5CJQDUEvyqq6AyWnn+AWV/kiIStjDQgXlri7ng==;EndpointSuffix=core.windows.net'
-    container_name = 'clcstoragecontainer'
+    azure_connection_string = '<Insert-Connection-String>'
+    container_name = '<Insert-Container-Name>'
 
     def requires(self) -> Generator[luigi.Task, None, None]:
         for filename in ['train_short.csv', 'test.csv']:

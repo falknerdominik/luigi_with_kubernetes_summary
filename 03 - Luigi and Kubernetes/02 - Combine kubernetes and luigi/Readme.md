@@ -96,7 +96,7 @@ Normally you would push your image on a registry that can be accessed by the clu
 (installing your own registry, ...) we take a shortcut. By executing:
 
 ```bash
-minicube $(docker-env)
+minikube $(docker-env)
 ``` 
 
 the environment variables of docker are set to the minikube cluster. 
