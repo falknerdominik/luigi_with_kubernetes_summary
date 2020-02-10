@@ -15,5 +15,5 @@ Shows how luigi can be used with kubernetes
     1. Share Data
     2. Let Luigi build the job specification
 
-4. Use Cases (Anna - Definition und kurze Beschreibung; ohne Implementierung)
+4. Use Cases
     1. Batch-Processing Pipeline - Implementation (+ Image of a pipeline)
