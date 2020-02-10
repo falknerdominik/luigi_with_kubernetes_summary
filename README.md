@@ -4,8 +4,6 @@ Shows how luigi can be used with kubernetes
 1. Setup 
     1. Kubernetes
     2. Virtual environment and dependencies
-    3. Luigi
-    4. Dataset
 
 2. Luigi Basics
     1. Basic Concepts
