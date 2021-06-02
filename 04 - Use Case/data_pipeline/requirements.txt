@@ -42,6 +42,6 @@ sklearn
 SoundFile==0.10.3post1
 tornado==5.1.1
 tzlocal==2.0.0
-urllib3==1.25.8
+urllib3==1.26.5
 Werkzeug==0.16.1
 wrapt==1.11.2
