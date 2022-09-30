@@ -12,7 +12,7 @@ httplib2==0.17.0
 
 
 idna==2.8
-joblib==0.14.1
+joblib==1.2.0
 librosa==0.7.1
 lockfile==0.12.2
 luigi==2.8.11
